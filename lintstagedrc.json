@@ -1,0 +1,6 @@
+{
+  "**/*.{js,jsx,ts,tsx}": "yarn lint:fix --max-warnings=0 --ignore-pattern '**/*/.eslintrc.js'",
+  "src/**/*.{ts,tsx}": "tsc-files --noEmit --p tsconfig.json src/signature-canvas.d.ts src/images.d.ts src/react-app-env.d.ts src/react-geocode.d.ts",
+  "functions/**/*.{ts,tsx}": "tsc-files --noEmit --p functions/tsconfig.json src/signature-canvas.d.ts src/images.d.ts src/react-app-env.d.ts src/react-geocode.d.ts",
+  "**/*": "prettier --write --ignore-unknown"
+}

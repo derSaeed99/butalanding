@@ -1,0 +1,22 @@
+{
+  "extends": ["react-app"],
+  "parserOptions": {
+    "warnOnUnsupportedTypescriptVersion": false,
+    "babel-ts":true
+  },
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "simple-import-sort/imports": "warn",
+    "prefer-const": "warn",
+    "no-redeclare": "warn",
+    "no-console": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["functions/**/*.ts?(x)", "src/serviceWorker.ts"],
+      "rules": { "no-console": "off" }
+    }
+  ]
+}

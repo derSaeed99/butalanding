@@ -1,0 +1,32 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": {
+    // For ESLint
+    "source.fixAll.eslint": true,
+    // For TSLint
+    "source.fixAll.tslint": true,
+    // For Stylelint
+    "source.fixAll.stylelint": true
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.renderWhitespace": "all",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.formatOnPaste": true,
+  "editor.accessibilityPageSize": 14,
+  "editor.fontSize": 14,
+  "editor.fontFamily": "cascadia code",
+  "material-ui-snippets.showNotesOnStartup": false,
+  "vscode-edge-devtools.mirrorEdits": true,
+  "todohighlight.keywords": [],
+  "todohighlight.isEnable": true,
+  "bracketPairColorizer.depreciation-notice": false,
+  "terminal.integrated.defaultProfile.osx": "bash",
+  //"prettier.useEditorConfig": false,
+  //"prettier.requireConfig": true,
+  "prettier.printWidth": 80
+}
