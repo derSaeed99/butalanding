@@ -14,13 +14,13 @@ import { ContactFormValues, ValuationFormValues } from "./Types/interfaces";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyDq0HA9ZkVB7V1YZQpOTauchVIKbbdFvkQ",
+  authDomain: "butalanding.firebaseapp.com",
+  projectId: "butalanding",
+  storageBucket: "butalanding.appspot.com",
+  messagingSenderId: "222534729590",
+  appId: "1:222534729590:web:08b8a5a74a8a9bcdfcc457",
+  measurementId: "G-3XV20L0YJL",
 };
 
 // Initialize Firebase
