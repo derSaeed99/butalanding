@@ -1,10 +1,10 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Rating, Typography } from '@mui/material'
+import { Button, FormControl, Grid, InputLabel, MenuItem, Rating, TextField, Typography } from '@mui/material'
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Field, Form, Formik } from 'formik'
-import { TextField } from 'formik-mui'
+import { serverTimestamp, Timestamp } from 'firebase/firestore/lite';
+import { Form, Formik } from 'formik'
 import React, { useState } from 'react'
 
 import { firebaseAddProductsValuations } from '../firebase';
@@ -21,7 +21,8 @@ export const ValuationForm = () => {
     const [spices, setSpices] = useState<number | null>(0)
     const [total, setTotal] = useState<number | null>(0)
     const [productType, setProductType] = useState("")
-    const [reciepe, setReciepe] = React.useState('');
+    const [message, setMessage] = useState("")
+    const [reciepe, setReciepe] = useState('');
 
 
     const handleClose = () => {
@@ -39,8 +40,10 @@ export const ValuationForm = () => {
         cookingExperience: cookingExperience || 0,
         receipeChoice: reciepe || "",
         packaging: packaging || 0,
-        message: "",
+        message: message || "",
         total: total || 0,
+        createdAt: serverTimestamp() as Timestamp
+
     }
 
     const labels: { [index: string]: string } = {
@@ -73,6 +76,7 @@ export const ValuationForm = () => {
                     <Formik initialValues={initialValues} onSubmit={async (values: ValuationFormValues) => {
                         setValuation(values)
                         await firebaseAddProductsValuations(initialValues)
+                        handleClose()
                     }}>
                         <Form>
                             <Grid container display="flex"
@@ -111,7 +115,7 @@ export const ValuationForm = () => {
                                     />
                                 </Grid>
                                 <Grid item >
-                                    <Typography>Kocherfahrung</Typography>
+                                    <Typography>Erfahrung beim Kochen</Typography>
                                     <Rating getLabelText={getLabelText} value={cookingExperience}
                                         precision={0.5} onChange={(event, value) => setCookingExperience(value)}
                                     />
@@ -156,11 +160,11 @@ export const ValuationForm = () => {
                                     />
                                 </Grid>
                                 <Grid item >
-                                    <Field sx={{
+                                    <TextField sx={{
                                         [`& fieldset`]: {
                                             borderRadius: 50
                                         }
-                                    }} name="message" label="Noch was..?" type="text" component={TextField} />
+                                    }} onChange={(e) => setMessage(e.target.value)} placeholder="Noch was..?" type="text" />
                                 </Grid>
                                 <Grid item >
                                     <Typography>Gesamtbewertung</Typography>

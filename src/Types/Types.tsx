@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore/lite";
+
 export type Valuations = {
     productType?: string;
     productName?: string;
@@ -8,4 +10,5 @@ export type Valuations = {
     packaging?: number;
     message?: string;
     total?: number;
+    createdAt?: Timestamp
 }

@@ -38,7 +38,7 @@ export const ValuationCard = ({ valuations }: any) => {
                         </Box>
                         <Box sx={{ mb: 1 }}>
                             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                Kocherfahrung
+                                Erfahrung beim Kochen
                             </Typography>
                             <Rating value={rating.cookingExperience || 0} readOnly precision={0.5} />
                         </Box>

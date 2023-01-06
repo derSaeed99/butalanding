@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore/lite";
+
 export interface ValuationFormValues {
   productType?: string;
   productName?: string;
@@ -8,6 +10,7 @@ export interface ValuationFormValues {
   packaging?: number;
   message?: string;
   total?: number;
+  createdAt: Timestamp;
 }
 
 export interface ContactFormValues {
