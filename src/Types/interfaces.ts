@@ -18,3 +18,21 @@ export interface ContactFormValues {
   email: string;
   message: string;
 }
+
+export interface Product {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  description: string;
+  category: string;
+  createdAt: Date;
+}
+
+export interface CartItem extends Product {
+  id: string;
+  quantity: number;
+  totalPrice: number;
+  tax: number;
+  delivary: number;
+}
