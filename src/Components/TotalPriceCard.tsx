@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { PayPal } from "./PayPal";
+
 interface TotalCartItemsProps {
   total: number;
   subTotal: number;
@@ -47,6 +49,9 @@ export const TotalPriceCard = ({
           <Typography sx={{ ml: 1 }} fontWeight={"bold"}>
             {total} €
           </Typography>
+        </Box>
+        <Box display="flex" sx={{ mt: 2 }}>
+          <PayPal />
         </Box>
       </CardContent>
       <CardActions>
