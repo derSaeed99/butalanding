@@ -129,8 +129,12 @@ export const PayPal = () => {
             />
           </PayPalScriptProvider>
         </AccordionDetails>
+        {message && (
+          <Box sx={{ width: 200 }}>
+            <Message content={message} />
+          </Box>
+        )}
       </Accordion>
-      <Message content={message} />
     </Box>
   );
 };
