@@ -10,10 +10,10 @@ export const CartView = () => {
   return emptyCart ? (
     <Box
       sx={{
-        minHeight: "90vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        mt: 10,
       }}
     >
       <Typography>Der Warenkorb ist noch leer</Typography>

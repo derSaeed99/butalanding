@@ -51,7 +51,15 @@ export const ProductDetails = ({ products }: { products: CaProduct[] }) => {
     <Box
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <Card>
+      <Card
+        variant="outlined"
+        sx={{
+          width: 500,
+          m: 2,
+          borderRadius: 5,
+          backgroundColor: "transparent",
+        }}
+      >
         <CardMedia
           component="img"
           height="140"

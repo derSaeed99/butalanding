@@ -110,7 +110,15 @@ export const Products = () => {
     >
       {products.map((product) => (
         <React.Fragment key={product.id}>
-          <Card variant="outlined" sx={{ width: 500, m: 2, borderRadius: 5 }}>
+          <Card
+            variant="outlined"
+            sx={{
+              width: 500,
+              m: 2,
+              borderRadius: 5,
+              backgroundColor: "transparent",
+            }}
+          >
             <CardContent>
               <CardMedia
                 component="img"
