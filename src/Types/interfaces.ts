@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore/lite";
 
-export interface ValuationFormValues {
+export interface CaValuationFormValues {
   productType?: string;
   productName?: string;
   taste?: number;
@@ -13,26 +13,26 @@ export interface ValuationFormValues {
   createdAt: Timestamp;
 }
 
-export interface ContactFormValues {
+export interface CaContactFormValues {
   name: string;
   email: string;
   message: string;
 }
 
-export interface Product {
+export interface CaProduct {
   id: string;
-  title: string;
+  title?: string;
   price: number;
-  imageUrl: string;
-  description: string;
-  category: string;
-  createdAt: Date;
+  imageUrl?: string;
+  description?: string;
+  category?: string;
+  createdAt?: Date;
 }
 
-export interface CartItem extends Product {
+export interface CaCartItem extends CaProduct {
   id: string;
-  quantity: number;
-  totalPrice: number;
+  quantity: string;
+  totalPrice?: number;
   tax: number;
-  delivary: number;
+  delivery?: string;
 }

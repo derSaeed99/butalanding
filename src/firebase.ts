@@ -2,11 +2,19 @@ import { initializeApp } from "firebase/app";
 import {
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   getFirestore,
+  setDoc,
+  updateDoc,
 } from "firebase/firestore/lite";
 
-import { ContactFormValues, ValuationFormValues } from "./Types/interfaces";
+import {
+  CaContactFormValues,
+  CaProduct,
+  CaValuationFormValues,
+} from "./Types/interfaces";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -39,7 +47,7 @@ export const firebaseGetProductsValuations = async () => {
 };
 
 export const firebaseAddProductsValuations = async (
-  productsValuations?: ValuationFormValues
+  productsValuations?: CaValuationFormValues
 ) => {
   await addDoc(collection(db, "productsValuations"), productsValuations);
   return;
@@ -55,8 +63,24 @@ export const firebaseGetContactMessages = async () => {
 };
 
 export const firebaseAddContactMessages = async (
-  contactMessages: ContactFormValues
+  contactMessages: CaContactFormValues
 ) => {
   await addDoc(collection(db, "contactMessages"), contactMessages);
   return;
+};
+
+export const firebaseAddItemToCart = async (product: CaProduct) => {
+  const cartRef = doc(db, "carts", product.id);
+  const cartDoc = await getDoc(cartRef);
+  if (cartDoc.exists()) {
+    // If the cart document already exists, update it with the new item
+    await updateDoc(cartRef, {
+      items: [...cartDoc.data().items, product],
+    });
+  } else {
+    // If the cart document doesn't exist, create a new one with the new item
+    await setDoc(cartRef, {
+      items: [product],
+    });
+  }
 };

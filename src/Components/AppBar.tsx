@@ -17,7 +17,7 @@ export const AppBar = () => {
     <>
       <TopBar
         elevation={0}
-        sx={{ backgroundColor: theme.palette.primary.main }}
+        sx={{ backgroundColor: theme.palette.primary.light }}
         position="sticky"
       >
         <Grid

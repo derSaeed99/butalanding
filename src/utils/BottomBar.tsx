@@ -1,10 +1,13 @@
-import { ShoppingCartOutlined } from "@mui/icons-material";
-import { Grid, IconButton } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router";
+import useLocalStorageState from "use-local-storage-state";
+
+import { CartWidget } from "../Components/CartWidget";
 
 export const BottomBar = () => {
-  const navigate = useNavigate();
+  const [cart] = useLocalStorageState("cart", {});
+
+  const productsCount: number = Object.keys(cart || {}).length;
   return (
     <Grid container>
       <Grid
@@ -12,9 +15,7 @@ export const BottomBar = () => {
         xs={12}
         sx={{ display: "flex", justifyContent: "flex-end", mr: 2 }}
       >
-        <IconButton onClick={() => navigate("/cart")}>
-          <ShoppingCartOutlined />
-        </IconButton>
+        <CartWidget productsCount={productsCount} />
       </Grid>
     </Grid>
   );
