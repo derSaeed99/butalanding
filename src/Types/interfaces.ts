@@ -31,7 +31,7 @@ export interface CaProduct {
 
 export interface CaCartItem extends CaProduct {
   id: string;
-  quantity: string;
+  quantity: number;
   totalPrice?: number;
   tax: number;
   delivery?: string;

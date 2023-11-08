@@ -75,7 +75,7 @@ export const products = [
 ];
 
 export const Products = () => {
-  const [count, setCount] = useState<string>("1");
+  const [count, setCount] = useState<number>(1);
   const [cart, setCart] = useLocalStorageState("cart", {});
   const navigate = useNavigate();
   const addToCart = (product: CaCartItem): void => {
@@ -93,7 +93,7 @@ export const Products = () => {
       },
     }));
   };
-  const handleChange = (value: string) => {
+  const handleChange = (value: number) => {
     setCount(value);
   };
   const isInCart = (productId: string): boolean =>
@@ -150,7 +150,7 @@ export const Products = () => {
                 sx={{ borderRadius: 50 }}
                 fullWidth
                 label="Count"
-                onChange={(e) => handleChange(e.target.value as string)}
+                onChange={(e) => handleChange(e.target.value as number)}
               >
                 {[...Array(10)].map((_, index) => (
                   <MenuItem key={index} value={index + 1}>

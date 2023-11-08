@@ -18,7 +18,7 @@ import { CaCartItem, CaProduct } from "../Types/interfaces";
 
 export const ProductDetails = ({ products }: { products: CaProduct[] }) => {
   const { id } = useParams<{ id: string }>();
-  const [count, setCount] = useState<string>("1");
+  const [count, setCount] = useState<number>(1);
   const [cart, setCart] = useLocalStorageState("cart", {});
   const product: CaProduct | undefined = products.find(
     (p) => id && p.id === id
@@ -41,7 +41,7 @@ export const ProductDetails = ({ products }: { products: CaProduct[] }) => {
       },
     }));
   };
-  const handleChange = (value: string) => {
+  const handleChange = (value: number) => {
     setCount(value);
   };
   const isInCart = (productId: string): boolean =>
@@ -112,7 +112,7 @@ export const ProductDetails = ({ products }: { products: CaProduct[] }) => {
               sx={{ borderRadius: 50 }}
               fullWidth
               label="Count"
-              onChange={(e) => handleChange(e.target.value as string)}
+              onChange={(e) => handleChange(e.target.value as number)}
             >
               {[...Array(10)].map((_, index) => (
                 <MenuItem key={index} value={index + 1}>

@@ -79,7 +79,6 @@ export const PayPal = () => {
                     throw new Error(errorMessage);
                   }
                 } catch (error) {
-                  console.error(error);
                   setMessage(`Could not initiate PayPal Checkout...${error}`);
                 }
               }}
@@ -120,14 +119,8 @@ export const PayPal = () => {
                     setMessage(
                       `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
                     );
-                    console.log(
-                      "Capture result",
-                      orderData,
-                      JSON.stringify(orderData, null, 2)
-                    );
                   }
                 } catch (error) {
-                  console.error(error);
                   setMessage(
                     `Sorry, your transaction could not be processed...${error}`
                   );

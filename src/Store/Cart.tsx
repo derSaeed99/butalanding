@@ -1,25 +1,31 @@
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import {
   Avatar,
   Box,
+  IconButton,
+  MenuItem,
   Paper,
+  Select,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useLocalStorageState from "use-local-storage-state";
 
-import { QuantitySelector } from "../Components/QuantitySelector";
 import { TotalPriceCard } from "../Components/TotalPriceCard";
 import theme from "../Theme/Theme";
 import { CaCartItem } from "../Types/interfaces";
 
 export const Cart = () => {
+  const [, setCount] = useState<number>(1);
+  const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [cart, setCart] = useLocalStorageState("cart", {});
   const location = useLocation();
   const xs = useMediaQuery(theme.breakpoints.only("xs"));
@@ -27,6 +33,22 @@ export const Cart = () => {
     window.scrollTo(0, 0);
   }, [location, cart]);
 
+  const handleChange = (value: number, product: CaCartItem) => {
+    setCount(value);
+    const productId = product.id;
+    setCart((prevCart: CaCartItem) => ({
+      ...prevCart,
+      [productId]: {
+        ...product,
+        quantity: value,
+        tax: 0.19,
+        price: product.price,
+        totalPrice: product.price * value * 1.19,
+        createdAt: new Date(),
+        id: productId ?? "",
+      },
+    }));
+  };
   const handleRemoveProduct = (productId: string): void => {
     setCart((prevCart: any) => {
       const updatedCart = { ...prevCart };
@@ -34,19 +56,9 @@ export const Cart = () => {
       return updatedCart;
     });
   };
+  const isInCart = (productId: string): boolean =>
+    Object.keys(cart || {}).includes(productId.toString());
 
-  const handleUpdateQuantity = (productId: string): void => {
-    setCart((prevCart: any) => {
-      const updatedCart = { ...prevCart };
-      if (updatedCart[productId]) {
-        updatedCart[productId] = {
-          ...updatedCart[productId],
-          quantity: updatedCart[productId].quantity,
-        };
-      }
-      return updatedCart;
-    });
-  };
   const getProducts = () => Object.values(cart || {});
   const subTotal = getProducts().reduce(
     (accumulator: number, product) =>
@@ -93,33 +105,40 @@ export const Cart = () => {
                       sx={{ width: 50, height: 50, mb: 1 }}
                     />
                     {product.title}
+                    <Typography sx={{ ml: 1 }} variant="caption">
+                      {product.quantity}x
+                    </Typography>
                   </TableCell>
                   <TableCell align="right" component="th" scope="row">
                     {product.price.toFixed(2)} €
                   </TableCell>
                   <TableCell align="right" component="th" scope="row">
-                    <QuantitySelector
-                      product={product}
-                      value={product.quantity}
-                      productId={product.id}
-                      onDelete={() => handleRemoveProduct(product.id)}
-                      onChange={() => handleUpdateQuantity(product.id)}
-                      options={[
-                        "1",
-                        "2",
-                        "3",
-                        "4",
-                        "5",
-                        "6",
-                        "7",
-                        "8",
-                        "9",
-                        "10",
-                      ]}
-                    />
+                    <Box sx={{ display: "flex", mr: -1 }}>
+                      <Select
+                        sx={{ borderRadius: 50 }}
+                        fullWidth
+                        label={product.quantity}
+                        onChange={(e) =>
+                          handleChange(e.target.value as number, product)
+                        }
+                      >
+                        {options.map((option, index) => (
+                          <MenuItem key={index} value={option}>
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {isInCart(product.id) && (
+                        <IconButton
+                          onClick={() => handleRemoveProduct(product.id)}
+                        >
+                          <DeleteOutlineIcon />
+                        </IconButton>
+                      )}
+                    </Box>
                   </TableCell>
                   <TableCell align="right" component="th" scope="row">
-                    {product.tax} %
+                    19 %
                   </TableCell>
                   <TableCell align="right">
                     {product.totalPrice?.toFixed(2)} €
